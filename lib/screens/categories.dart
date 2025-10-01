@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:meal_museum/widgets/category_grid_item.dart';
 import 'package:meal_museum/data/dummy_data.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -8,9 +9,7 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Categories'),
-      ),
+      appBar: AppBar(title: const Text('Categories')),
       body: GridView(
         padding: const EdgeInsets.all(16),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -22,34 +21,8 @@ class CategoriesScreen extends StatelessWidget {
         children: [
           // grid de 2 colunas
           for (final category in availableCategories)
-            _buildCategoryItem(category.title, category.color),
+            CategoryGridItem(category: category),
         ],
-      ),
-    );
-  }
-
-  Widget _buildCategoryItem(String title, Color color) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            color.withOpacity(0.7),
-            color,
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Center(
-        child: Text(
-          title,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
       ),
     );
   }
