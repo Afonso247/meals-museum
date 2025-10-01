@@ -30,7 +30,7 @@ class MealsScreen extends StatelessWidget {
             const SizedBox(height: 24),
             ElevatedButton.icon(
               onPressed: () {
-                // Navigator.of(context).pop();
+                Navigator.of(context).pop();
               },
               icon: const Icon(Icons.arrow_back),
               label: const Text('Voltar'),
