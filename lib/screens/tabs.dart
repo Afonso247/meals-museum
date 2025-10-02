@@ -54,9 +54,11 @@ class _TabsScreenState extends State<TabsScreen> {
     Navigator.of(context).pop(); // Fechar o drawer
     if (identifier == 'filters') {
       // Navegar até filters
-      final result = await Navigator.of(
-        context,
-      ).push(MaterialPageRoute(builder: (ctx) => FiltersScreen()));
+      final result = await Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (ctx) => FiltersScreen(currentFilters: _filters),
+        ),
+      );
 
       if (result != null) {
         setState(() {
