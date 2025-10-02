@@ -43,13 +43,21 @@ class _TabsScreenState extends State<TabsScreen> {
     });
   }
 
-  void _setScreen(String identifier) {
+  void _setScreen(String identifier) async {
     Navigator.of(context).pop(); // Fechar o drawer
     if (identifier == 'filters') {
       // Navegar até filters
-      Navigator.of(
+      final result = await Navigator.of(
         context,
       ).push(MaterialPageRoute(builder: (ctx) => FiltersScreen()));
+
+      if (result != null) {
+        debugPrint('Filtros aplicados:');
+        debugPrint('Sem Gluten: ${result[Filter.glutenFree]}');
+        debugPrint('Sem Lactose: ${result[Filter.lactoseFree]}');
+        debugPrint('Vegetariano: ${result[Filter.vegetarian]}');
+        debugPrint('Vegano: ${result[Filter.vegan]}');
+      }
     } else {
       // Navegar até meals (home)
       setState(() {
