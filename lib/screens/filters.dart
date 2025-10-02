@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 // import 'package:meal_museum/widgets/main_drawer.dart';
 // import 'package:meal_museum/screens/tabs.dart';
+import 'package:meal_museum/providers/filter_provider.dart';
 
-enum Filter { glutenFree, lactoseFree, vegetarian, vegan }
-
-class FiltersScreen extends StatefulWidget {
-  const FiltersScreen({super.key, required this.currentFilters});
-
-  final Map<Filter, bool> currentFilters;
+class FiltersScreen extends ConsumerStatefulWidget {
+  FiltersScreen({super.key});
 
   @override
-  State<FiltersScreen> createState() => _FiltersScreenState();
+  ConsumerState<FiltersScreen> createState() => _FiltersScreenState();
 }
 
-class _FiltersScreenState extends State<FiltersScreen> {
+class _FiltersScreenState extends ConsumerState<FiltersScreen> {
   bool _glutenFree = false;
   bool _lactoseFree = false;
   bool _vegan = false;
@@ -22,10 +21,11 @@ class _FiltersScreenState extends State<FiltersScreen> {
   @override
   void initState() {
     super.initState();
-    _glutenFree = widget.currentFilters[Filter.glutenFree]!;
-    _lactoseFree = widget.currentFilters[Filter.lactoseFree]!;
-    _vegan = widget.currentFilters[Filter.vegan]!;
-    _vegetarian = widget.currentFilters[Filter.vegetarian]!;
+    final currentFilters = ref.read(filtersProvider);
+    _glutenFree = currentFilters[Filter.glutenFree]!;
+    _lactoseFree = currentFilters[Filter.lactoseFree]!;
+    _vegan = currentFilters[Filter.vegan]!;
+    _vegetarian = currentFilters[Filter.vegetarian]!;
   }
 
   @override
@@ -34,12 +34,13 @@ class _FiltersScreenState extends State<FiltersScreen> {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
         if (didPop) return;
-        Navigator.of(context).pop({
+        ref.read(filtersProvider.notifier).setAllFilters({
           Filter.glutenFree: _glutenFree,
           Filter.lactoseFree: _lactoseFree,
           Filter.vegetarian: _vegetarian,
           Filter.vegan: _vegan,
         });
+        Navigator.of(context).pop();
       },
       child: Scaffold(
         appBar: AppBar(title: const Text('Filtros')),
