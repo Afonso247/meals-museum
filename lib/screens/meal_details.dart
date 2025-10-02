@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:meal_museum/models/meal.dart';
+import 'package:meal_museum/widgets/meal_details_item.dart';
 
 class MealDetailsScreen extends StatelessWidget {
   const MealDetailsScreen({super.key, required this.meal});
@@ -12,7 +13,7 @@ class MealDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(meal.title)),
       body: Center(
-        child: Text(meal.title, style: const TextStyle(color: Colors.grey)),
+        child: MealDetailsItem(meal: meal),
       ),
     );
   }
