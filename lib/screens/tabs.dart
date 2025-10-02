@@ -5,6 +5,7 @@ import 'package:meal_museum/screens/categories.dart';
 import 'package:meal_museum/screens/meals.dart';
 import 'package:meal_museum/widgets/main_drawer.dart';
 import 'package:meal_museum/screens/filters.dart';
+import 'package:meal_museum/data/dummy_data.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -20,7 +21,7 @@ class _TabsScreenState extends State<TabsScreen> {
     Filter.glutenFree: false,
     Filter.lactoseFree: false,
     Filter.vegetarian: false,
-    Filter.vegan: false
+    Filter.vegan: false,
   };
 
   void _showInfoMessage(String message) {
@@ -72,8 +73,25 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final availableMeals = dummyMeals.where((meal) {
+      if (_filters[Filter.glutenFree]! && !meal.isGlutenFree) {
+        return false;
+      }
+      if (_filters[Filter.lactoseFree]! && !meal.isLactoseFree) {
+        return false;
+      }
+      if (_filters[Filter.vegetarian]! && !meal.isVegetarian) {
+        return false;
+      }
+      if (_filters[Filter.vegan]! && !meal.isVegan) {
+        return false;
+      }
+      return true;
+    }).toList();
+
     Widget activePage = CategoriesScreen(
       onToggleFavorite: _toggleFavoriteStatus,
+      availableMeals: availableMeals,
     );
     String activePageTitle = 'Categorias';
 
