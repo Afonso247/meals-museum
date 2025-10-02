@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import 'package:meal_museum/models/meal.dart';
+import 'package:meal_museum/screens/meal_details.dart';
 
 class MealItem extends StatelessWidget {
   final Meal meal;
@@ -54,7 +55,13 @@ class MealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => {},
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (ctx) => MealDetailsScreen(meal: meal),
+          ),
+        );
+      },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         elevation: 4,
