@@ -4,9 +4,9 @@ import 'package:meal_museum/models/meal.dart';
 import 'package:meal_museum/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({super.key, required this.titulo, required this.meals});
+  const MealsScreen({super.key, this.titulo, required this.meals});
 
-  final String titulo;
+  final String? titulo;
   final List<Meal> meals;
 
   @override
@@ -30,20 +30,24 @@ class MealsScreen extends StatelessWidget {
               style: TextStyle(fontSize: 18, color: Colors.grey[600]),
             ),
             const SizedBox(height: 24),
-            ElevatedButton.icon(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(Icons.arrow_back),
-              label: const Text('Voltar'),
-            ),
+            // ElevatedButton.icon(
+            //   onPressed: () {
+            //     Navigator.of(context).pop();
+            //   },
+            //   icon: const Icon(Icons.arrow_back),
+            //   label: const Text('Voltar'),
+            // ),
           ],
         ),
       );
     }
 
+    if (titulo == null) {
+      return content;
+    }
+
     return Scaffold(
-      appBar: AppBar(title: Text(titulo)),
+      appBar: AppBar(title: Text(titulo!)),
       body: content,
     );
   }
