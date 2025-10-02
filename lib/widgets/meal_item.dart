@@ -6,7 +6,13 @@ import 'package:meal_museum/screens/meal_details.dart';
 
 class MealItem extends StatelessWidget {
   final Meal meal;
-  const MealItem({super.key, required this.meal});
+  final void Function(Meal meal) onToggleFavorite;
+
+  const MealItem({
+    super.key,
+    required this.meal,
+    required this.onToggleFavorite,
+  });
 
   String get complexityText {
     switch (meal.complexity) {
@@ -58,7 +64,10 @@ class MealItem extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (ctx) => MealDetailsScreen(meal: meal),
+            builder: (ctx) => MealDetailsScreen(
+              meal: meal,
+              onToggleFavorite: onToggleFavorite,
+            ),
           ),
         );
       },
