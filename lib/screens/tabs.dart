@@ -4,6 +4,7 @@ import 'package:meal_museum/models/meal.dart';
 import 'package:meal_museum/screens/categories.dart';
 import 'package:meal_museum/screens/meals.dart';
 import 'package:meal_museum/widgets/main_drawer.dart';
+import 'package:meal_museum/screens/filters.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -46,7 +47,9 @@ class _TabsScreenState extends State<TabsScreen> {
     Navigator.of(context).pop(); // Fechar o drawer
     if (identifier == 'filters') {
       // Navegar até filters
-      // Navigator.of(context).pushNamed('/filters');
+      Navigator.of(
+        context,
+      ).push(MaterialPageRoute(builder: (ctx) => FiltersScreen()));
     } else {
       // Navegar até meals (home)
       setState(() {
