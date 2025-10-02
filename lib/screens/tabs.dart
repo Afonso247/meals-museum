@@ -16,6 +16,12 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex = 0;
   final List<Meal> _favoriteMeals = [];
+  Map<Filter, bool> _filters = {
+    Filter.glutenFree: false,
+    Filter.lactoseFree: false,
+    Filter.vegetarian: false,
+    Filter.vegan: false
+  };
 
   void _showInfoMessage(String message) {
     ScaffoldMessenger.of(context).clearSnackBars();
@@ -52,11 +58,9 @@ class _TabsScreenState extends State<TabsScreen> {
       ).push(MaterialPageRoute(builder: (ctx) => FiltersScreen()));
 
       if (result != null) {
-        debugPrint('Filtros aplicados:');
-        debugPrint('Sem Gluten: ${result[Filter.glutenFree]}');
-        debugPrint('Sem Lactose: ${result[Filter.lactoseFree]}');
-        debugPrint('Vegetariano: ${result[Filter.vegetarian]}');
-        debugPrint('Vegano: ${result[Filter.vegan]}');
+        setState(() {
+          _filters = result;
+        });
       }
     } else {
       // Navegar até meals (home)
