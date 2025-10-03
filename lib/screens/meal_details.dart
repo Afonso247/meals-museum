@@ -25,17 +25,26 @@ class _MealDetailsScreenState extends ConsumerState<MealDetailsScreen> {
         title: Text(widget.meal.title),
         actions: [
           IconButton(
-            icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (child, animation) =>
+                  ScaleTransition(scale: animation, child: child),
+              child: Icon(
+                isFavorite ? Icons.favorite : Icons.favorite_border,
+                key: ValueKey(isFavorite),
+              ),
+            ),
             onPressed: () {
               final wasAdded = ref
-                  .watch(favoriteMealsProvider.notifier)
+                  .read(favoriteMealsProvider.notifier)
                   .toggleMealFavoriteStatus(widget.meal);
+
               ScaffoldMessenger.of(context).clearSnackBars();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
                     wasAdded
-                        ? 'Adicionado ao favoritos'
+                        ? 'Adicionado aos favoritos'
                         : 'Removido dos favoritos',
                   ),
                 ),
