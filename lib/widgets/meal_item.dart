@@ -81,14 +81,17 @@ class MealItem extends StatelessWidget {
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15),
                   ),
-                  child: FadeInImage.memoryNetwork(
-                    placeholder: kTransparentImage,
-                    image: meal.imageUrl,
-                    height: 250,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    fadeInDuration: const Duration(milliseconds: 300),
-                    fadeOutDuration: const Duration(milliseconds: 100),
+                  child: Hero(
+                    tag: meal.id,
+                    child: FadeInImage.memoryNetwork(
+                      placeholder: kTransparentImage,
+                      image: meal.imageUrl,
+                      height: 250,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      fadeInDuration: const Duration(milliseconds: 300),
+                      fadeOutDuration: const Duration(milliseconds: 100),
+                    ),
                   ),
                 ),
                 Positioned(
