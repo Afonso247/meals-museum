@@ -1,4 +1,4 @@
-# Cardápio Flutter
+# Meals Museum
 
 ![Badge de build](https://img.shields.io/badge/build-passing-brightgreen) ![License](https://img.shields.io/badge/license-MIT-blue) ![Flutter](https://img.shields.io/badge/Flutter-Android%20%7C%20iOS-blue)
 
@@ -8,7 +8,7 @@
 
 ## 🧾 Visão geral
 
-O projeto é um app de receitas, onde o usuário pode navegar por categorias (ex.: Café da manhã, Fácil e rápido, Exótico), visualizar ingredientes e modo de preparo de cada prato, aplicar filtros alimentares (Sem Glúten, Sem Lactose, Vegano, Vegetariano), salvar pratos como favoritos e customizar seus próprios filtros para descobrir comidas que se encaixem nas suas restrições.
+Meals Museum é um app de receitas, onde o usuário pode navegar por categorias (ex.: Café da manhã, Fácil e rápido, Exótico), visualizar ingredientes e modo de preparo de cada prato, aplicar filtros alimentares (Sem Glúten, Sem Lactose, Vegano, Vegetariano), salvar pratos como favoritos e customizar seus próprios filtros para descobrir comidas que se encaixem nas suas restrições.
 
 Principais características:
 
